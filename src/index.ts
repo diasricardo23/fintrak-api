@@ -1,20 +1,20 @@
-import { fastify, FastifyRequest, FastifyReply } from 'fastify';
+import { fastify } from 'fastify';
 
-const Port = process.env.PORT || 7000;
+const PORT = process.env.PORT || 8080;
 const server = fastify({ logger: { level: 'info' } });
 
-server.get("/healthcheck", async (request: FastifyRequest, reply: FastifyReply) => {
+server.get("/healthcheck", async () => {
   return { status: "OK" };
 });
 
 const start = async () => {
-    try {
-        await server.listen({ port: Port as number });
-        console.log('Server started successfully');
-    } catch (err) {
-        server.log.error(err);
-        process.exit(1);
-    }
+  try {
+    await server.listen({ port: PORT as number, host: '0.0.0.0' });
+    server.log.info('Server started successfully');
+  } catch (err) {
+    server.log.error(err);
+    process.exit(1);
+  }
 };
 
 start();
