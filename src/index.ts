@@ -1,4 +1,5 @@
 import { fastify } from 'fastify';
+import authRoutes from './modules/auth/auth.route';
 
 const PORT = process.env.PORT || 8080;
 const server = fastify({ logger: { level: 'info' } });
@@ -6,6 +7,8 @@ const server = fastify({ logger: { level: 'info' } });
 server.get("/healthcheck", async () => {
   return { status: "OK" };
 });
+
+server.register(authRoutes, { prefix: "/api/auth" });
 
 const start = async () => {
   try {
