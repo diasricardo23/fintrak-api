@@ -17,6 +17,9 @@ COPY tsconfig.json ./
 # Copy the rest of the application code
 COPY src ./src
 
+# Install Prisma Client
+RUN pnpm prisma generate
+
 # Build the TypeScript code
 RUN pnpm build
 
