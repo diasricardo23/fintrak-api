@@ -14,6 +14,9 @@ RUN pnpm install
 # Copy TypeScript configuration
 COPY tsconfig.json ./
 
+# Copy Prisma schema
+COPY prisma ./prisma
+
 # Copy the rest of the application code
 COPY src ./src
 
