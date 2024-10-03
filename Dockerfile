@@ -20,6 +20,9 @@ COPY prisma ./prisma
 # Copy the rest of the application code
 COPY src ./src
 
+# ADD ENV
+ENV DATABASE_URL=${DATABASE_URL}
+
 # Install Prisma Client
 RUN pnpm prisma generate
 
