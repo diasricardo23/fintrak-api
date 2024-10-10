@@ -23,8 +23,12 @@ COPY src ./src
 # ADD ENV
 # Specify the variable you need
 ARG DATABASE_URL
+ARG JWT_SECRET
+ARG COOKIE_SECRET
 # Use the varible
 RUN echo $DATABASE_URL
+RUN echo $JWT_SECRET
+RUN echo $COOKIE_SECRET
 
 # Install Prisma Client
 RUN pnpm prisma generate
