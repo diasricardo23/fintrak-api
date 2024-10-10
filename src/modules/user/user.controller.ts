@@ -20,3 +20,8 @@ export const getUserById = async (request: FastifyRequest<{ Params: { id: string
     return reply.status(500).send({ error: 'ERROR_GET_USER_BY_ID' });
   }
 };
+
+export const getLoggedUser = async (request: FastifyRequest, reply: FastifyReply) => {
+  const user = await prisma.user.findUnique({ where: { id: request.user.id }, select: { id: true, email: true, createdAt: true, updatedAt: true } });
+  return reply.send(user);
+};
