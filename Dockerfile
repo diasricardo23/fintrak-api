@@ -21,7 +21,10 @@ COPY prisma ./prisma
 COPY src ./src
 
 # ADD ENV
-ENV DATABASE_URL=${DATABASE_URL}
+# Specify the variable you need
+ARG DATABASE_URL
+# Use the varible
+RUN echo $DATABASE_URL
 
 # Install Prisma Client
 RUN pnpm prisma generate
